@@ -34,3 +34,5 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(flecs)
+
+add_subdirectory(core/Marathon)
