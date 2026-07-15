@@ -16,6 +16,6 @@ target_include_directories(GLCore PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(GLCore PUBLIC glfw glad glm::glm)
+target_link_libraries(GLCore PUBLIC glfw glew_s glm::glm)
 
 target_compile_definitions(GLCore PRIVATE GL_CORE_LIB_EXPORT)

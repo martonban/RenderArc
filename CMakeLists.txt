@@ -14,9 +14,17 @@ FetchContent_MakeAvailable(Arca)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
-# glad
-add_library(glad STATIC thirdparty/glad/src/glad.c)
-target_include_directories(glad PUBLIC thirdparty/glad/include)
+# GLEW dependency
+set(BUILD_UTILS OFF CACHE INTERNAL "")
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+FetchContent_Declare(
+	GLEW
+	URL https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.zip
+	SOURCE_SUBDIR build/cmake
+)
+FetchContent_MakeAvailable(GLEW)
+unset(CMAKE_POLICY_VERSION_MINIMUM)
+target_include_directories(glew_s PUBLIC $<BUILD_INTERFACE:${glew_SOURCE_DIR}/include>)
 
 
 
