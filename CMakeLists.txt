@@ -3,11 +3,10 @@ project(RenderArc)
 
 include(FetchContent)
 
-# arca dependency
-set(ARCA_VERSION v0.0.2-alpha)
+# Arca Dependencies
 FetchContent_Declare(
 	Arca
-	URL https://github.com/martonban/Arca/archive/refs/tags/${ARCA_VERSION}.tar.gz
+	URL https://github.com/martonban/Arca/archive/refs/tags/v0.0.2-alpha.tar.gz
 )
 FetchContent_MakeAvailable(Arca)
 
@@ -15,24 +14,36 @@ FetchContent_MakeAvailable(Arca)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
-# raylib dependency
-set(RAYLIB_VERSION 5.5)
+# glad
+add_library(glad STATIC thirdparty/glad/src/glad.c)
+target_include_directories(glad PUBLIC thirdparty/glad/include)
+
+
+
+# glm dependency
 FetchContent_Declare(
-  raylib
-  URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
-  FIND_PACKAGE_ARGS ${RAYLIB_VERSION}
+	glm
+	URL https://github.com/g-truc/glm/archive/refs/tags/1.0.3.tar.gz
 )
-set(BUILD_EXAMPLES OFF CACHE INTERNAL "")
-FetchContent_MakeAvailable(raylib)
+FetchContent_MakeAvailable(glm)
 
-# flecs dependency
-include(FetchContent)
+# glfw dependency
+set(GLFW_BUILD_DOCS OFF CACHE INTERNAL "")
+set(GLFW_BUILD_TESTS OFF CACHE INTERNAL "")
+set(GLFW_BUILD_EXAMPLES OFF CACHE INTERNAL "")
 FetchContent_Declare(
-  flecs
-  GIT_REPOSITORY https://github.com/SanderMertens/flecs.git
-  GIT_TAG master
+	glfw
+	URL https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.zip
 )
+FetchContent_MakeAvailable(glfw)
 
-FetchContent_MakeAvailable(flecs)
+# vulkan dependency
+# find_package(Vulkan REQUIRED)
 
-add_subdirectory(core/Marathon)
+
+# application
+add_subdirectory(application/SandBox)
+
+# core libaries
+add_subdirectory(core/graphics/GLCore)
+add_subdirectory(core/marathon)
