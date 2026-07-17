@@ -11,11 +11,12 @@
     #define GL_CORE_LIB_API
 #endif
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include "instance/GLInstance.hpp"
 
 namespace GLCore {
     GL_CORE_LIB_API void Init();
+    GL_CORE_LIB_API void StartWindow(const Renderer::WindowBaseSetting& settings);
+
 }
 
 

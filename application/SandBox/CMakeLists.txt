@@ -10,5 +10,11 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Sandbox PROPERTY CXX_STANDARD 20)
 endif()
 
+add_custom_command(TARGET Sandbox POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy 
+    $<TARGET_FILE:GLCore>
+    $<TARGET_FILE_DIR:Sandbox>/
+)
+
 
 target_link_libraries(Sandbox PRIVATE Arca GLCore)

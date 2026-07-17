@@ -6,7 +6,7 @@ set(CMAKE_C_COMPILER gcc)
 set(CMAKE_CXX_COMPILER g++)
 
 
-file(GLOB GL_CORE_SOURCES "src/*.cpp")
+file(GLOB_RECURSE GL_CORE_SOURCES "src/*.cpp")
 
 add_library(GLCore SHARED
     ${GL_CORE_SOURCES}
@@ -14,6 +14,8 @@ add_library(GLCore SHARED
 
 target_include_directories(GLCore PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/instance
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
 )
 
 target_link_libraries(GLCore PUBLIC glfw glew_s glm::glm)
