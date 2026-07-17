@@ -4,7 +4,7 @@ int main() {
 
     Renderer::WindowBaseSetting settings{};
 
-    GLCore::Init();
-    GLCore::StartWindow(settings);
+    GLCore::Init(settings);
+    GLCore::StartWindow();
     return 0;
 }

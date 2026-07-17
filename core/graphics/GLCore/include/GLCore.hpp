@@ -14,8 +14,8 @@
 #include "instance/GLInstance.hpp"
 
 namespace GLCore {
-    GL_CORE_LIB_API void Init();
-    GL_CORE_LIB_API void StartWindow(const Renderer::WindowBaseSetting& settings);
+    GL_CORE_LIB_API void Init(const Renderer::WindowBaseSetting& settings);
+    GL_CORE_LIB_API void StartWindow();
 
 }
 

@@ -16,8 +16,8 @@ class GLInstance {
             static GLInstance instance;
             return instance;
         }
-        void Init();
-        void StartWindow(const int& windowWidth, const int& windowHeight);
+        void Init(const int& windowWidth, const int& windowHeight);
+        void StartWindow();
     protected:
         GLInstance() = default;
     private:
