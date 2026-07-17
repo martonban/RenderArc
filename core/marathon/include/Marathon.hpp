@@ -12,6 +12,6 @@
 #endif
 
 
-MARATHON_LIB_API void StartMarathon(int a, int b);
+MARATHON_LIB_API void StartMarathon();
 
 #endif

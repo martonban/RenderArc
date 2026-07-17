@@ -6,7 +6,7 @@ set(CMAKE_C_COMPILER gcc)
 set(CMAKE_CXX_COMPILER g++)
 
 
-file(GLOB MARATHON_SOURCES "src/*.cpp")
+file(GLOB_RECURSE MARATHON_SOURCES "src/*.cpp")
 
 add_library(Marathon SHARED
     ${MARATHON_SOURCES}
