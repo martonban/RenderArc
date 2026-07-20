@@ -16,6 +16,7 @@ target_include_directories(GLCore PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/include/instance
     ${CMAKE_CURRENT_SOURCE_DIR}/include/utils
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/shader
 )
 
 target_link_libraries(GLCore PUBLIC glfw glew_s glm::glm)
