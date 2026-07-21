@@ -14,6 +14,17 @@
 
 #include "WindowUtils.hpp"
 
+#ifdef _MSC_VER
+    #define ASSERT(x) if (!(x)) __debugbreak();
+#else
+    #define ASSERT(x) if (!(x)) __builtin_trap();
+#endif
+
+#define GLCall(x) GLClearError();\
+    x;\
+    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
+
+
 class GLInstance {
     public:
         static GLInstance& GetInstance() {
@@ -27,6 +38,9 @@ class GLInstance {
     private:
         GLFWwindow* window;
   
+        static void GLClearError();
+        static bool GLLogCall(const char* fuction, const char* file, int line);
+
         // Instace realated guard functions 
         GLInstance(const GLInstance&) = delete;
         GLInstance& operator=(const GLInstance&) = delete;

@@ -60,8 +60,9 @@ void GLInstance::StartWindow() {
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
         
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -71,4 +72,16 @@ void GLInstance::StartWindow() {
 
 }
 
+void GLInstance::GLClearError() {
+    while (glGetError() != GL_NO_ERROR);
+}
 
+bool GLInstance::GLLogCall(const char* fuction, const char* file, int line) {
+    while(GLenum error = glGetError()) {
+        std::cout << "[OpenGL Error] (" << error << "): " << fuction << 
+         " " << file << ":" << line << std::endl;
+        return false;
+    }
+
+    return true;
+}
