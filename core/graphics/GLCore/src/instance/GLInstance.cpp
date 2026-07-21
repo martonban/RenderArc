@@ -57,10 +57,13 @@ void GLInstance::StartWindow() {
 
     glUseProgram(shaderId);
 
+    int location = glGetUniformLocation(shaderId, "u_Color");
+    glUniform4f(location, 0.2f, 0.3f, 0.8f, 1.0f);
+
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
+        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
         
 
         glfwSwapBuffers(window);

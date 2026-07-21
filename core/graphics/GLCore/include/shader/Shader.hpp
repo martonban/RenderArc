@@ -23,6 +23,8 @@ class Shader {
         static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
         static int CompileShader(unsigned int type, const std::string& source);
         static ShaderProgramSource ParseShader(const std::string& filePath);
+
+        // TO-DO Uniforms
 };
 
 #endif
