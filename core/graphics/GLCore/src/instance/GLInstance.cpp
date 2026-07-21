@@ -21,20 +21,32 @@ void GLInstance::Init(const int& windowWidth, const int& windowHeight) {
 
 void GLInstance::StartWindow() {
 
-    float position[6] = {
+    float position[] = {
         -0.5f, -0.5f,
-         0.0f,  0.5f,
-         0.5f, -0.5f 
+         0.5f, -0.5f,
+         0.5f,  0.5f,
+        -0.5f,  0.5f
     };
+
+    unsigned int indeces[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
 
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     unsigned int buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), position, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), position, GL_STATIC_DRAW);
 
-    
+    unsigned int ibo;
+    glGenBuffers(1, &ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 3 * 2 * sizeof(unsigned int), indeces, GL_STATIC_DRAW);
+
+
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
     glEnableVertexAttribArray(0);
 
@@ -48,7 +60,7 @@ void GLInstance::StartWindow() {
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
