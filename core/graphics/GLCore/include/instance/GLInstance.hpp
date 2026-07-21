@@ -26,12 +26,7 @@ class GLInstance {
         GLInstance() = default;
     private:
         GLFWwindow* window;
-
-        
-        static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
-        static int CompileShader(unsigned int type, const std::string& source);
-        static ShaderProgramSource ParseShader(const std::string& filePath);
-
+  
         // Instace realated guard functions 
         GLInstance(const GLInstance&) = delete;
         GLInstance& operator=(const GLInstance&) = delete;
