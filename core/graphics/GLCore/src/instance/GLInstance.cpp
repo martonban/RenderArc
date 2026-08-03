@@ -40,11 +40,8 @@ void GLInstance::StartWindow() {
 
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-    unsigned int vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
     VertexArray va;
+    
     VertexBuffer vb(position,  4 * 2 * sizeof(float));
 
     VertexBufferLayout layout;
@@ -55,26 +52,20 @@ void GLInstance::StartWindow() {
 
 
     Shader shader {"../../../application/SandBox/assets/Basics.glsl"};
-
-    unsigned int shaderId = shader.GetId();
-
-    glUseProgram(shaderId);
-
-    int location = glGetUniformLocation(shaderId, "u_Color");
-    glUniform4f(location, 0.2f, 0.3f, 0.8f, 1.0f);
-
-    glBindVertexArray(0);
-    glUseProgram(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    shader.Bind();
+    shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
 
 
+    va.Unbind();
+    shader.Unbind();
+    vb.Unbind();
+    ib.Unbind();
 
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glUseProgram(shaderId);
-        
+        shader.Bind();
+
         va.Bind();
         ib.Bind();
 
@@ -85,7 +76,6 @@ void GLInstance::StartWindow() {
         glfwPollEvents();
     }
 
-    glDeleteProgram(shaderId);
     glfwTerminate();
 
 }

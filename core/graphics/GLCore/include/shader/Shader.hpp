@@ -6,25 +6,41 @@
 #include <sstream>
 #include <string>
 
+#include <unordered_map>
+
 #include <GL/glew.h>
 
-#include "shader/ShaderProgramSouce.hpp"
+struct ShaderProgramSource {
+    std::string vertexSource;
+    std::string fragmentSource;
+};
+
 
 class Shader {
+    private:
+        unsigned int mRendererID;
+        std::string mFilePath;
+        std::unordered_map<std::string, int> mUniformLocationCache;
+        ShaderProgramSource mSrc {};
     public:
         Shader(const std::string& filePath);
-        unsigned int GetId();
+        ~Shader();
+
+        void Bind() const;
+        void Unbind() const;
         
+        void SetUniform4f(const std::string& name, const float& v0, const float& v1, const float& v2, const float& v3);
+        
+        unsigned int GetId();
+
     private:
+        ShaderProgramSource ParseShader();
+        unsigned int CompileShader(unsigned int type, const std::string& source);
+        unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
+                
+        int GetUniformLocation(const std::string& name);
 
-        unsigned int id;
-        ShaderProgramSource src {};
-
-        static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
-        static int CompileShader(unsigned int type, const std::string& source);
-        static ShaderProgramSource ParseShader(const std::string& filePath);
-
-        // TO-DO Uniforms
+        
 };
 
 #endif

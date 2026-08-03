@@ -14,8 +14,6 @@
 #include "buffers/VertexArray.hpp"
 
 #include "shader/Shader.hpp"
-#include "shader/ShaderProgramSouce.hpp"
-
 #include "WindowUtils.hpp"
 
 #ifdef _MSC_VER
