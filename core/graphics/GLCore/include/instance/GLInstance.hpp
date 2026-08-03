@@ -11,6 +11,7 @@
 
 #include "buffers/VertexBuffer.hpp"
 #include "buffers/IndexBuffer.hpp"
+#include "buffers/VertexArray.hpp"
 
 #include "shader/Shader.hpp"
 #include "shader/ShaderProgramSouce.hpp"

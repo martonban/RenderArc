@@ -44,12 +44,12 @@ void GLInstance::StartWindow() {
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
+    VertexArray va;
     VertexBuffer vb(position,  4 * 2 * sizeof(float));
 
-
-
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-    glEnableVertexAttribArray(0);
+    VertexBufferLayout layout;
+    layout.Push<float>(2);
+    va.AddBuffer(vb, layout);
 
     IndexBuffer ib(indeces, 6);
 
@@ -69,11 +69,13 @@ void GLInstance::StartWindow() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
+
     while(!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderId);
-        glBindVertexArray(vao);
+        
+        va.Bind();
         ib.Bind();
 
         GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
