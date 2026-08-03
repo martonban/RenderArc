@@ -9,6 +9,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "buffers/VertexBuffer.hpp"
+#include "buffers/IndexBuffer.hpp"
+
 #include "shader/Shader.hpp"
 #include "shader/ShaderProgramSouce.hpp"
 

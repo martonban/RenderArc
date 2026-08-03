@@ -10,6 +10,7 @@ file(GLOB_RECURSE GL_CORE_SOURCES "src/*.cpp")
 
 add_library(GLCore SHARED
     ${GL_CORE_SOURCES}
+    include/buffers/IndexBuffer.hpp
 )
 
 target_include_directories(GLCore PUBLIC
