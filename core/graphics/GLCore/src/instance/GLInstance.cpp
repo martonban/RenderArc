@@ -1,6 +1,6 @@
 #include "instance/GLInstance.hpp"
 
-void GLInstance::Init(const int& windowWidth, const int& windowHeight) {
+void GLInstance::Init(const char* title, const int& windowWidth, const int& windowHeight, const WindowAPI& api) {
     if(!glfwInit()) {
         std::cerr << "GLFW Error: GLFW initalizing stage has some issues!" << std::endl;
     }

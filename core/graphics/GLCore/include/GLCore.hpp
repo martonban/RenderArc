@@ -11,20 +11,16 @@
     #define GL_CORE_LIB_API
 #endif
 
+#include "GLCommon.hpp"
 #include "instance/GLInstance.hpp" 
-
-
-typedef struct GLRendererSettings {
-    int windowWidth = 640;
-    int windowHeight = 480;
-} GLRendererSettings;
-
 
 
 
 
 namespace GLCore {
+    GL_CORE_LIB_API void Init();
     GL_CORE_LIB_API void Init(const GLRendererSettings& settings);
+
     GL_CORE_LIB_API void StartWindow();
 
 }

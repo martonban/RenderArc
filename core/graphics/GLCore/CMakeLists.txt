@@ -12,13 +12,17 @@ add_library(GLCore SHARED
     ${GL_CORE_SOURCES}
 )
 
-target_include_directories(GLCore PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/instance
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/render_utils
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/render_utils/buffers
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/shader
-)
+function(add_all_includes target directory)
+    target_include_directories(${target} PUBLIC ${directory})
+    file(GLOB subdirs RELATIVE ${directory} "${directory}/*")
+    foreach(subdir ${subdirs})
+        if(IS_DIRECTORY "${directory}/${subdir}")
+            add_all_includes(${target} "${directory}/${subdir}")
+        endif()
+    endforeach()
+endfunction()
+
+add_all_includes(GLCore ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(GLCore PUBLIC glfw glew_s glm::glm)
 

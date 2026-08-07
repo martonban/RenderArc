@@ -9,6 +9,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "GLCommon.hpp"
+
 #include "render_utils/buffers/VertexBuffer.hpp"
 #include "render_utils/buffers/IndexBuffer.hpp"
 #include "render_utils/buffers/VertexArray.hpp"
@@ -32,7 +34,7 @@ class GLInstance {
             static GLInstance instance;
             return instance;
         }
-        void Init(const int& windowWidth, const int& windowHeight);
+        void Init(const char* title, const int& windowWidth, const int& windowHeight, const WindowAPI& api);
         void StartWindow();
     protected:
         GLInstance() = default;
