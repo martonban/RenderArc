@@ -1,4 +1,4 @@
-#include "shader/Shader.hpp"
+#include "render_utils/shader/Shader.hpp"
 
 Shader::Shader(const std::string& filePath) {
     mFilePath = filePath;

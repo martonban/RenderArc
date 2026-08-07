@@ -2,7 +2,7 @@
 
 int main() {
 
-    Renderer::WindowBaseSetting settings{};
+    GLRendererSettings settings{};
 
     GLCore::Init(settings);
     GLCore::StartWindow();

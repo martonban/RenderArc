@@ -3,8 +3,8 @@
 
 #include <GL/glew.h>
 
-#include "buffers/VertexBuffer.hpp"
-#include "buffers/VertexBufferLayout.hpp"
+#include "render_utils/buffers/VertexBuffer.hpp"
+#include "render_utils/buffers/VertexBufferLayout.hpp"
 
 class VertexArray {
     public:

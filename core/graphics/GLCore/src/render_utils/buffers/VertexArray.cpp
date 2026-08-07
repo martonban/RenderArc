@@ -1,4 +1,4 @@
-#include "buffers/VertexArray.hpp"
+#include "render_utils/buffers/VertexArray.hpp"
 #include <cstdint>
 
 VertexArray::VertexArray() {

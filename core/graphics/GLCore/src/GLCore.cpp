@@ -1,6 +1,6 @@
 #include "GLCore.hpp"
 
-void GLCore::Init(const Renderer::WindowBaseSetting& settings) {
+void GLCore::Init(const GLRendererSettings& settings) {
     GLInstance::GetInstance().Init(settings.windowWidth, settings.windowHeight);
 }
 

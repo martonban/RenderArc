@@ -9,12 +9,11 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "buffers/VertexBuffer.hpp"
-#include "buffers/IndexBuffer.hpp"
-#include "buffers/VertexArray.hpp"
+#include "render_utils/buffers/VertexBuffer.hpp"
+#include "render_utils/buffers/IndexBuffer.hpp"
+#include "render_utils/buffers/VertexArray.hpp"
 
-#include "shader/Shader.hpp"
-#include "WindowUtils.hpp"
+#include "render_utils/shader/Shader.hpp"
 
 #ifdef _MSC_VER
     #define ASSERT(x) if (!(x)) __debugbreak();
