@@ -2,9 +2,20 @@
 
 int main() {
 
-    GLRendererSettings settings{};
+    GLWindowSettings windowSettings {};
+    
+    GLCore::Init(windowSettings);
+    GLCore::InitRenderer();
+    
+    GLCore::TestUpload();
 
-    GLCore::Init(settings);
-    GLCore::StartWindow();
+    while (!GLCore::ShouldClose()) {
+        GLCore::BeginFrame();
+
+        GLCore::TestDrawCall();
+        GLCore::EndFrame();
+    }
+
+    GLCore::Shutdown();
     return 0;
 }

@@ -7,6 +7,9 @@
 #include "render_utils/buffers/VertexBufferLayout.hpp"
 
 class VertexArray {
+    private:
+        unsigned int mRendererID;
+
     public:
         VertexArray();
         ~VertexArray();
@@ -15,8 +18,7 @@ class VertexArray {
         void Unbind() const;
       
         void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
-    private:
-        unsigned int mRendererID;
+
 };
 
 #endif

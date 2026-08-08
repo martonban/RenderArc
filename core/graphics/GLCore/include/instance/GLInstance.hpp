@@ -1,15 +1,14 @@
 #ifndef GL_INSTANCE_HPP
 #define GL_INSTANCE_HPP
 
-#include <iostream>
+
 #include <fstream>
 #include <sstream>
 #include <string>
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include "GLCommon.hpp"
+
+#include "io/WindowHandler.hpp"
 
 #include "render_utils/buffers/VertexBuffer.hpp"
 #include "render_utils/buffers/IndexBuffer.hpp"
@@ -29,18 +28,36 @@
 
 
 class GLInstance {
+    private:
+        GLCoreStatus mStatus {GL_CORE_UNINITIALIZED};
+        std::unique_ptr<WindowHandler> mWindowSys;
+        std::shared_ptr<GLRenderer> mRenderer;
+
+        // Temporary test resources
+        std::unique_ptr<VertexArray> mTestVA;
+        std::unique_ptr<VertexBuffer> mTestVB;
+        std::unique_ptr<IndexBuffer> mTestIB;
+        std::unique_ptr<Shader> mTestShader;
+
     public:
         static GLInstance& GetInstance() {
             static GLInstance instance;
             return instance;
         }
         void Init(const char* title, const int& windowWidth, const int& windowHeight, const WindowAPI& api);
-        void StartWindow();
+        void InitRenderer();
+        bool ShouldClose() const;
+        void BeginFrame();
+        void EndFrame();
+        void Destroy();
+
+        void TestUpload();
+        void TestDrawCall();
+
     protected:
         GLInstance() = default;
+
     private:
-        GLFWwindow* window;
-  
         static void GLClearError();
         static bool GLLogCall(const char* fuction, const char* file, int line);
 

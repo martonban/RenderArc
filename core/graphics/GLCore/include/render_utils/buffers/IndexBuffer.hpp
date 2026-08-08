@@ -4,6 +4,10 @@
 #include <GL/glew.h>
 
 class IndexBuffer {
+    private:
+        unsigned int mRendererID;
+        unsigned int mCount;
+
     public:
         IndexBuffer(const unsigned int* data, unsigned int count);
         ~IndexBuffer();
@@ -13,9 +17,7 @@ class IndexBuffer {
 
         inline unsigned int GetCount() const { return mCount; }
 
-    private:
-        unsigned int mRendererID;
-        unsigned int mCount;
+
 };
 
 #endif
