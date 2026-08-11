@@ -8,6 +8,8 @@
 
 #include "GLCommon.hpp"
 
+#include "Batch.hpp"
+
 #include "io/WindowHandler.hpp"
 
 #include "render_utils/buffers/VertexBuffer.hpp"
@@ -33,11 +35,10 @@ class GLInstance {
         std::unique_ptr<WindowHandler> mWindowSys;
         std::shared_ptr<GLRenderer> mRenderer;
 
-        // Temporary test resources
-        std::unique_ptr<VertexArray> mTestVA;
-        std::unique_ptr<VertexBuffer> mTestVB;
-        std::unique_ptr<IndexBuffer> mTestIB;
-        std::unique_ptr<Shader> mTestShader;
+        // Temporary
+        std::vector<Batch> mBatches;
+
+
 
     public:
         static GLInstance& GetInstance() {
@@ -51,8 +52,8 @@ class GLInstance {
         void EndFrame();
         void Destroy();
 
-        void TestUpload();
-        void TestDrawCall();
+        void AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& filePath);
+        void Draw();
 
     protected:
         GLInstance() = default;

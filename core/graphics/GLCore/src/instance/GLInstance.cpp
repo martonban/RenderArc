@@ -19,7 +19,8 @@ void GLInstance::InitRenderer() {
 
     mWindowSys->AttachRenderer(mRenderer);
     mStatus = GL_CORE_RENDERER_ATTACHED_TO_WINDOW; 
-
+    
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 }
 
 bool GLInstance::ShouldClose() const {
@@ -44,52 +45,16 @@ void GLInstance::Destroy() {
     glfwTerminate();
 }
 
-
-void GLInstance::TestUpload() {
-
-    float position[] = {
-        -0.5f, -0.5f,
-         0.5f, -0.5f,
-         0.5f,  0.5f,
-        -0.5f,  0.5f
-    };
-
-    unsigned int indeces[] = {
-        0, 1, 2,
-        2, 3, 0
-    };
-
-
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
-    mTestVA = std::make_unique<VertexArray>();
-
-    mTestVB = std::make_unique<VertexBuffer>(position, 4 * 2 * sizeof(float));
-
-    VertexBufferLayout layout;
-    layout.Push<float>(2);
-    mTestVA->AddBuffer(*mTestVB, layout);
-
-    mTestIB = std::make_unique<IndexBuffer>(indeces, 6);
-
-    mTestShader = std::make_unique<Shader>("../../../application/SandBox/assets/Basics.glsl");
-    mTestShader->Bind();
-    mTestShader->SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
-
-    mTestVA->Unbind();
-    mTestShader->Unbind();
-    mTestVB->Unbind();
-    mTestIB->Unbind();
+void GLInstance::AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& filePath) {
+    mBatches.emplace_back(quad, layout, filePath);
 }
 
-
-void GLInstance::TestDrawCall() {
-    mTestShader->Bind();
-
-    mTestVA->Bind();
-    mTestIB->Bind();
-
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+void GLInstance::Draw() {
+    for(const auto& batch: mBatches) {
+        batch.Bind();
+        glDrawElements(GL_TRIANGLES, batch.GetIndexCount(), GL_UNSIGNED_INT, nullptr);
+        batch.Unbind();
+    }
 }
 
 

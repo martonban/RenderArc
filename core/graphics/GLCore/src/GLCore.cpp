@@ -30,11 +30,10 @@ void GLCore::Shutdown() {
     GLInstance::GetInstance().Destroy();
 }
 
-
-void GLCore::TestUpload() {
-    GLInstance::GetInstance().TestUpload();
+void GLCore::AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& filePath) {
+    GLInstance::GetInstance().AddBatch(quad, layout, filePath);
 }
 
-void GLCore::TestDrawCall() {
-    GLInstance::GetInstance().TestDrawCall();
+void GLCore::Draw() {
+    GLInstance::GetInstance().Draw();
 }

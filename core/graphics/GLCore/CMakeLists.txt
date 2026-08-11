@@ -24,6 +24,6 @@ endfunction()
 
 add_all_includes(GLCore ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(GLCore PUBLIC glfw glew_s glm::glm)
+target_link_libraries(GLCore PUBLIC glfw glew_s glm::glm GeoCore)
 
 target_compile_definitions(GLCore PRIVATE GL_CORE_LIB_EXPORT)

@@ -17,4 +17,4 @@ add_custom_command(TARGET Sandbox POST_BUILD
 )
 
 
-target_link_libraries(Sandbox PRIVATE Arca GLCore)
+target_link_libraries(Sandbox PRIVATE Arca GLCore GeoCore)

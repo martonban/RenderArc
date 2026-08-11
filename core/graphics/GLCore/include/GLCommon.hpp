@@ -1,6 +1,10 @@
 #ifndef GL_COMMON_HPP
 #define GL_COMMON_HPP
 
+#include <filesystem>
+#include <vector>
+
+#include "render_utils/buffers/VertexBufferLayout.hpp"
 
 typedef enum {
     GLFW_API
@@ -15,12 +19,27 @@ typedef enum {
 } GLCoreStatus;
 
 
-typedef struct GLWindowSettings {
-    const char* title = "Application Name";
-    int windowWidth = 640;
-    int windowHeight = 480;
-    WindowAPI windowApi = GLFW_API;
-} GLWindowSettings;
+namespace GLCore {
+    // State structs
+    typedef struct WindowSettings {
+        const char* title = "Application Name";
+        int windowWidth = 640;
+        int windowHeight = 480;
+        WindowAPI windowApi = GLFW_API;
+    } GLWindowSettings;
+
+
+    // Rendering classes
+    typedef struct DrawableObject {
+        std::vector<float> verteces;
+        std::vector<float> indeces;
+        VertexBufferLayout layout;
+        unsigned int shaderID;
+    } DrawableObject;  
+
+
+
+}
 
 
 #endif

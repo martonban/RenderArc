@@ -12,6 +12,7 @@
 #endif
 
 #include "GLCommon.hpp"
+#include "GeoCore.hpp"
 #include "instance/GLInstance.hpp" 
 
 
@@ -26,10 +27,8 @@ namespace GLCore {
     GL_CORE_LIB_API void EndFrame();   
     GL_CORE_LIB_API void Shutdown();
 
-    GL_CORE_LIB_API void TestUpload();
-
-    GL_CORE_LIB_API void TestDrawCall();
-
+    GL_CORE_LIB_API void AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& filePath);
+    GL_CORE_LIB_API void Draw();
 
 }
 

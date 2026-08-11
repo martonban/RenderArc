@@ -1,18 +1,30 @@
 #include "GLCore.hpp"
+#include "GeoCore.hpp"
 
 int main() {
 
-    GLWindowSettings windowSettings {};
+    GLCore::GLWindowSettings windowSettings {};
     
     GLCore::Init(windowSettings);
     GLCore::InitRenderer();
+
+
+
+    GeoCore::Quad quad { glm::fvec3{0.0f, 0.0f, 0.0f}, 0.5f, 0.5f };
+
+    VertexBufferLayout layout;
+    layout.Push<float>(3);
     
-    GLCore::TestUpload();
+    GLCore::AddBatch(
+        quad,
+        layout,
+        "../../../application/SandBox/assets/materials/shaders/Basics.glsl"
+    );
+
 
     while (!GLCore::ShouldClose()) {
         GLCore::BeginFrame();
-
-        GLCore::TestDrawCall();
+        GLCore::Draw();
         GLCore::EndFrame();
     }
 

@@ -54,4 +54,5 @@ add_subdirectory(application/SandBox)
 
 # core libaries
 add_subdirectory(core/graphics/GLCore)
+add_subdirectory(core/graphics/GeoCore)
 add_subdirectory(core/marathon)
