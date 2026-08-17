@@ -14,11 +14,13 @@ int main() {
 
     VertexBufferLayout layout;
     layout.Push<float>(3);
+    layout.Push<float>(2);
     
     GLCore::AddBatch(
         quad,
         layout,
-        "../../../application/SandBox/assets/materials/shaders/Basics.glsl"
+        "../../../application/SandBox/assets/materials/shaders/Basics.glsl",
+        "../../../application/SandBox/assets/textures/texture.png"
     );
 
 

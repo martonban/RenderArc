@@ -15,17 +15,27 @@ namespace GeoCore {
         return "0.1.0";
     }
 
+    struct Vertex {
+        glm::fvec3 position;
+        glm::fvec2 texCoord;
+    };
+
     class Quad {
-        public: 
-            std::array<glm::fvec3, 4> vertices;
+        public:
+            std::array<Vertex, 4> vertices;
             std::array<unsigned int, 6> indices;
 
             Quad (const glm::fvec3& center, const float& width, const float& height) {
-                vertices[0] = center + glm::fvec3{-width/2.0, +  height/2.0, 0.0};
-                vertices[1] = center + glm::fvec3{ width/2.0, +  height/2.0, 0.0};
-                vertices[2] = center + glm::fvec3{ width/2.0, + -height/2.0, 0.0};
-                vertices[3] = center + glm::fvec3{-width/2.0, + -height/2.0, 0.0};
-                
+                vertices[0].position = center + glm::fvec3{-width/2.0, +  height/2.0, 0.0};
+                vertices[1].position = center + glm::fvec3{ width/2.0, +  height/2.0, 0.0};
+                vertices[2].position = center + glm::fvec3{ width/2.0, + -height/2.0, 0.0};
+                vertices[3].position = center + glm::fvec3{-width/2.0, + -height/2.0, 0.0};
+
+                vertices[0].texCoord = glm::fvec2{0.0, 1.0};
+                vertices[1].texCoord = glm::fvec2{1.0, 1.0};
+                vertices[2].texCoord = glm::fvec2{1.0, 0.0};
+                vertices[3].texCoord = glm::fvec2{0.0, 0.0};
+
                 indices = { 0, 3, 1,
                             1, 3, 2 };
             }

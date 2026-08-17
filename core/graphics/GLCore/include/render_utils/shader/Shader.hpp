@@ -30,7 +30,8 @@ class Shader {
         void Unbind() const;
         
         void SetUniform4f(const std::string& name, const float& v0, const float& v1, const float& v2, const float& v3);
-        
+        void SetUniform1i(const std::string& name, const int& v0);
+
         unsigned int GetId();
 
     private:
