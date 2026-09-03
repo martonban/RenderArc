@@ -38,8 +38,6 @@ class GLInstance {
         // Temporary
         std::vector<Batch> mBatches;
 
-
-
     public:
         static GLInstance& GetInstance() {
             static GLInstance instance;
@@ -52,7 +50,7 @@ class GLInstance {
         void EndFrame();
         void Destroy();
 
-        void AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& shaderFilePath, const std::string& textureFilePath);
+        void AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, std::shared_ptr<Shader> shader, const std::string& textureFilePath);
         void Draw();
 
     protected:

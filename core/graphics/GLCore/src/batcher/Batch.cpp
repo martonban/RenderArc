@@ -1,9 +1,10 @@
 #include "batcher/Batch.hpp"
 
-Batch::Batch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& shaderFilePath, const std::string& textureFilePath) {
+Batch::Batch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, std::shared_ptr<Shader> shader, const std::string& textureFilePath) {
     
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
     
     mVAO = std::make_unique<VertexArray>();
     
@@ -14,7 +15,7 @@ Batch::Batch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const 
     mIBO = std::make_unique<IndexBuffer>(quad.indices.data(), quad.indices.size());
 
     
-    mShader = std::make_unique<Shader>(shaderFilePath);
+    mShader = shader;
     mShader->Bind();
     mShader->SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
 

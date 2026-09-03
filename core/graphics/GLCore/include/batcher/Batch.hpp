@@ -18,9 +18,9 @@ class Batch {
         std::unique_ptr<VertexBuffer> mVBO;
         std::unique_ptr<IndexBuffer> mIBO;
         std::unique_ptr<TextureBuffer> mTexture;
-        std::unique_ptr<Shader> mShader;
+        std::shared_ptr<Shader> mShader;
     public:
-        Batch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& shaderFilePath, const std::string& textureFilePath);
+        Batch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, std::shared_ptr<Shader> shader, const std::string& textureFilePath);
         
         void Bind() const;
         void Unbind() const;

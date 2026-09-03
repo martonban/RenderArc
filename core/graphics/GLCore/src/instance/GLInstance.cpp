@@ -45,9 +45,10 @@ void GLInstance::Destroy() {
     glfwTerminate();
 }
 
-void GLInstance::AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& shaderFilePath, const std::string& textureFilePath) {
-    mBatches.emplace_back(quad, layout, shaderFilePath, textureFilePath);
+void GLInstance::AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, std::shared_ptr<Shader> shader, const std::string& textureFilePath) {
+    mBatches.emplace_back(quad, layout, shader, textureFilePath);
 }
+
 
 void GLInstance::Draw() {
     for(const auto& batch: mBatches) {

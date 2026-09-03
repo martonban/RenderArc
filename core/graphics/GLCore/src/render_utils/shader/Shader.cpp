@@ -28,6 +28,9 @@ void Shader::SetUniform4f(const std::string& name, const float& v0, const float&
     glUniform4f(GetUniformLocation(name), v0, v1, v2, v3);
 }
 
+void Shader::SetUniform4m(const std::string& name, const glm::mat4& v) {
+    glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &v[0][0]);
+}
 
 unsigned int Shader::GetId() {
     return mRendererID;

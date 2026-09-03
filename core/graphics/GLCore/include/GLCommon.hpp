@@ -4,6 +4,9 @@
 #include <filesystem>
 #include <vector>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "render_utils/buffers/VertexBufferLayout.hpp"
 
 typedef enum {

@@ -30,8 +30,8 @@ void GLCore::Shutdown() {
     GLInstance::GetInstance().Destroy();
 }
 
-void GLCore::AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, const std::string& shaderFilePath, const std::string& textureFilePath) {
-    GLInstance::GetInstance().AddBatch(quad, layout, shaderFilePath, textureFilePath);
+void GLCore::AddBatch(const GeoCore::Quad& quad, const VertexBufferLayout& layout, std::shared_ptr<Shader> shader, const std::string& textureFilePath) {
+    GLInstance::GetInstance().AddBatch(quad, layout, shader, textureFilePath);
 }
 
 void GLCore::Draw() {
